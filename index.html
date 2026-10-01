@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jo & Sno Storefront</title>
+    <!-- Linked CSS Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="container">
+    <div id="checkout-alert" class="alert">
+        Order completed successfully! Go See JB!! Your shopping cart has been cleared.
+    </div>
+
+    <!-- CATALOG VIEW -->
+    <div id="catalog-view">
+        <div class="nav">
+            <h2 style="margin:0;">Jo & Sno Storefront</h2>
+            <button class="btn" onclick="showView('cart')">
+                View Cart (<span id="nav-cart-count">0</span> items)
+            </button>
+        </div>
+
+        <!-- SEARCH AND CATEGORY CONTROLS -->
+        <div class="controls">
+            <input 
+                type="text" 
+                id="search-bar" 
+                class="search-input" 
+                placeholder="Search products by name, category, or description..." 
+                oninput="handleSearch(this.value)"
+            >
+            <div class="filter-group">
+                <button class="filter-btn active" data-category="All" onclick="setCategory('All')">All</button>
+                <button class="filter-btn" data-category="NFT" onclick="setCategory('NFT')">NFTs</button>
+                <button class="filter-btn" data-category="Dapp" onclick="setCategory('Dapp')">DApps</button>
+                <button class="filter-btn" data-category="Crypto Token" onclick="setCategory('Crypto Token')">Crypto Tokens</button>
+            </div>
+        </div>
+
+        <!-- LIVE CRYPTO PRICE TICKER -->
+        <div class="crypto-ticker" id="crypto-ticker">
+            <div class="crypto-item" id="ticker-bitcoin">
+                <span class="crypto-icon">₿</span>
+                <span>BTC:</span>
+                <span class="crypto-price">Loading...</span>
+            </div>
+            <div class="crypto-item" id="ticker-ethereum">
+                <span class="crypto-icon">Ξ</span>
+                <span>ETH:</span>
+                <span class="crypto-price">Hold on...</span>
+            </div>
+            <div class="crypto-item" id="ticker-solana">
+                <span class="crypto-icon">◎</span>
+                <span>SOL:</span>
+                <span class="crypto-price">Loading...</span>
+            </div>
+            <div class="crypto-item" id="ticker-xrp">
+                <span class="crypto-icon">✕</span>
+                <span>XRP:</span>
+                <span class="crypto-price">Loading...</span>
+            </div>
+        </div>
+
+        <div class="grid" id="product-grid"></div>
+    </div>
+
+    <!-- CART VIEW -->
+    <div id="cart-view" class="hidden">
+        <div class="nav">
+            <h2 style="margin:0;">Shopping Cart</h2>
+            <button class="btn" onclick="showView('catalog')">← Continue Shopping</button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Product ID</th>
+                    <th>Product Name</th>
+                    <th>Category</th>
+                    <th>Individual Cost</th>
+                    <th>Quantity</th>
+                    <th>Product Total</th>
+                </tr>
+            </thead>
+            <tbody id="cart-table-body"></tbody>
+        </table>
+
+        <div id="cart-summary" class="totals-box hidden">
+            <p><strong>Total of Items Ordered:</strong> $<span id="subtotal-val">0.00</span></p>
+            <p><strong>Tax (5%):</strong> $<span id="tax-val">0.00</span></p>
+            <p><strong>Shipping & Handling (10%):</strong> $<span id="shipping-val">0.00</span></p>
+            <h3 style="margin-top: 10px; color: #10b981;">
+                Order Total: $<span id="total-val">0.00</span>
+            </h3>
+            <br>
+            <button class="btn" onclick="showView('catalog')">Continue Shopping</button>
+            <button class="btn btn-success" onclick="checkout()">Check Out</button>
+        </div>
+    </div>
+</div>
+
+<!-- Linked JavaScript File -->
+<script src="js/app.js"></script>
+
+</body>
+</html>
